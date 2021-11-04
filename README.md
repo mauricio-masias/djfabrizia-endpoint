@@ -2,8 +2,7 @@
 
 ## Lumen PHP Framework
 
-## Credits: 
-[![MASIAS](https://masias.co.uk)]
+## Credits: [MASIAS](https://masias.co.uk)
 
 
 
