@@ -3,7 +3,7 @@
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 $router->get( '/', function () use ( $router ) {
-    return redirect(env('APP_URL'));
+    return redirect(env('APP_SOURCE'));
 } );
 
 
