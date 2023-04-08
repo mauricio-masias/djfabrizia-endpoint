@@ -1,3 +1,7 @@
+#php_flag log_errors on
+#php_value error_reporting 32767
+#php_value error_log "error_log.txt"
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
