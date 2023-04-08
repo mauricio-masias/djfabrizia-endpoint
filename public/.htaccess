@@ -2,6 +2,8 @@
 #php_value error_reporting 32767
 #php_value error_log "error_log.txt"
 
+ErrorDocument 404 https://djfabrizia.com
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
