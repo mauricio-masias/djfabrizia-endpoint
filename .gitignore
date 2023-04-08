@@ -7,4 +7,5 @@ Homestead.yaml
 .phpunit.result.cache
 .DS_Store
 ._DS_Store
-
+.env.docker
+.env.prod
