@@ -9,3 +9,4 @@ Homestead.yaml
 ._DS_Store
 .env.docker
 .env.prod
+error_log.txt
