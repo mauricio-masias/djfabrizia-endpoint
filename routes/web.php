@@ -3,7 +3,7 @@
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 $router->get( '/', function () use ( $router ) {
-    return 'Silence is Bitcoin';
+    return Redirect::to('https://djfabrizia.com');
 } );
 
 
