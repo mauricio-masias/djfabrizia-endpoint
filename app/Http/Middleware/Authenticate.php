@@ -20,7 +20,7 @@ class Authenticate
      * @param \Illuminate\Contracts\Auth\Factory $auth
      * @return void
      */
-    public function __construct( Auth $auth )
+    public function __construct(Auth $auth)
     {
         $this->auth = $auth;
     }
@@ -33,16 +33,16 @@ class Authenticate
      * @param string|null $guard
      * @return mixed
      */
-    public function handle( $request, Closure $next, $guard = null )
+    public function handle($request, Closure $next, $guard = null)
     {
-        if ( $this->auth->guard( $guard )->guest() ) {
-            return response( [
-                'status' => 401,
+        if ($this->auth->guard($guard)->guest()) {
+            return response([
+                'status'   => 401,
                 'response' => 'Unauthorized.',
-                'reason' => 'Token missing or expired',
-            ], 401 );
+                'reason'   => 'Token missing or expired',
+            ], 401);
         }
 
-        return $next( $request );
+        return $next($request);
     }
 }
