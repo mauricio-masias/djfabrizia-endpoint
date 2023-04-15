@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Jwt;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -33,6 +34,6 @@ class AuthServiceProvider extends ServiceProvider
             if ($request->header('auth_token')) {
                 return Jwt::where('token', $request->header('auth_token'))->first();
             }
-        });
+        } );
     }
 }

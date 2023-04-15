@@ -2,35 +2,34 @@
 
 namespace App\Services;
 
-
 class MoreService
 {
-    public static function shapeResponse( $metadata, $more, $section ): array
+    public static function shapeResponse($metadata, $more, $section): array
     {
         $next_page = $more[0];
 
-        switch ( $section ) {
+        switch ($section) {
             case 'mixes':
-                return MixesService::shapeResponse( $metadata, $next_page );
+                return MixesService::shapeResponse($metadata, $next_page);
                 break;
 
             case 'releases':
-                return ReleasesService::shapeResponse( $metadata, $next_page );
+                return ReleasesService::shapeResponse($metadata, $next_page);
                 break;
 
             case 'playlists':
-                return PlaylistsService::shapeResponse( $metadata, $next_page );
+                return PlaylistsService::shapeResponse($metadata, $next_page);
                 break;
 
-            default :
+            default:
                 return [];
                 break;
         }
     }
 
-    public static function buildCacheKey( $section, $more ): string
+    public static function buildCacheKey($section, $more): string
     {
-        return strtoupper( $section ) . '_MORE_' . $more[0];
+        return strtoupper($section) . '_MORE_' . $more[0];
     }
 
 }

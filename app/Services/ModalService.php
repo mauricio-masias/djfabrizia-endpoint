@@ -6,15 +6,15 @@ use App\Helpers\FilterPostMeta as Helper;
 
 class ModalService
 {
-    public static function shapeResponse( $metadata, $option ): array
+    public static function shapeResponse($metadata, $option): array
     {
-        switch ( $option ) {
+        switch ($option) {
             case 'bookme':
-                $settings = Helper::filterMetaDataWithKeys( $metadata, '/\bbook_me_/' );
+                $settings   = Helper::filterMetaDataWithKeys($metadata, '/\bbook_me_/');
                 $section[0] = [
-                    'pa' => $settings['book_me_pa'],
+                    'pa'     => $settings['book_me_pa'],
                     'lights' => $settings['book_me_lights'],
-                    'status' => true
+                    'status' => true,
                 ];
                 break;
             default:

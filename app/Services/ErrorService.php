@@ -4,23 +4,23 @@ namespace App\Services;
 
 class ErrorService
 {
-    public static function verboseError( $option, $code, $status = null )
+    public static function verboseError($option, $code, $status = null)
     {
-        return response( [
-            'code' => $code,
+        return response([
+            'code'    => $code,
             'message' => 'Error on request',
-            'data' => [
-                'status' => ( !$status ) ? 404 : $status,
+            'data'    => [
+                'status'  => (!$status) ? 404 : $status,
                 'request' => $option,
             ],
-        ] );
+        ]);
     }
 
-    public static function bookingError( $error )
+    public static function bookingError($error)
     {
-        return response( [
+        return response([
             'status' => false,
-            'error' => $error
-        ] );
+            'error'  => $error,
+        ]);
     }
 }
