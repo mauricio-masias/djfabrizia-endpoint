@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Navigation extends Model
 {
@@ -20,9 +20,9 @@ class Navigation extends Model
 
     protected $hidden = [];
 
-    public static function getMenu( $option )
+    public static function getMenu($option)
     {
-        return DB::select( DB::raw(
+        return DB::select(
             "
                 SELECT
                     a.ID,
@@ -35,7 +35,7 @@ class Navigation extends Model
                 JOIN dj_term_relationships b ON a.ID=b.object_id
                 WHERE b.term_taxonomy_id = :option
                 ORDER BY a.menu_order ASC"
-        ), array( 'option' => $option )
+            , ['option' => $option]
         );
     }
 }

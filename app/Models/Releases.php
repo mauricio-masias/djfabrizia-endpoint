@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Releases extends Model
 {
@@ -20,11 +20,11 @@ class Releases extends Model
 
     protected $hidden = [];
 
-    public static function getRange( $limit, $page )
+    public static function getRange($limit, $page)
     {
-        $offset = $limit * ( $page - 1 );
+        $offset = $limit * ($page - 1);
 
-        $rows = DB::select( DB::raw(
+        $rows = DB::select(
             "    SELECT
                     a.post_title as title,
                     (select c.meta_value from dj_postmeta c where post_id=a.ID and meta_key='release_cover_art') as cover_art,
@@ -46,26 +46,27 @@ class Releases extends Model
                 WHERE a.post_type = :option
                 ORDER BY a.post_date DESC
                 LIMIT :limit OFFSET :offset"
-        ),
-            [ 'option' => 'Releases', 'offset' => $offset, 'limit' => $limit ]
+            ,
+            ['option' => 'Releases', 'offset' => $offset, 'limit' => $limit]
         );
 
-        return !empty( $rows[0]->title ) ? $rows : [];
+        return !empty($rows[0]->title) ? $rows : [];
     }
 
-    public static function getTrackName( $id ) //180
+    public static function getTrackName($id) //180
+
     {
-        return DB::table( 'dj_postmeta' )
-            ->select( 'meta_value' )
-            ->where( 'post_id', '=', $id )
-            ->where( 'meta_key', '=', '_wp_attached_file' )
+        return DB::table('dj_postmeta')
+            ->select('meta_value')
+            ->where('post_id', '=', $id)
+            ->where('meta_key', '=', '_wp_attached_file')
             ->get();
     }
 
     public static function countAll()
     {
-        return DB::table( 'dj_posts' )
-            ->where( 'post_type', '=', 'Releases' )
+        return DB::table('dj_posts')
+            ->where('post_type', '=', 'Releases')
             ->count();
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -20,24 +20,24 @@ class Post extends Model
 
     protected $hidden = [];
 
-    public static function pageExist( int $page_id )
+    public static function pageExist(int $page_id)
     {
-        $rows = DB::table( 'dj_posts' )
-            ->select( 'ID' )
-            ->where( 'ID', '=', $page_id )
+        $rows = DB::table('dj_posts')
+            ->select('ID')
+            ->where('ID', '=', $page_id)
             ->get();
 
-        return !empty( $rows[0]->ID );
+        return !empty($rows[0]->ID);
     }
 
-    public static function getPostMeta( int $page_id )
+    public static function getPostMeta(int $page_id)
     {
-        $rows = DB::table( 'dj_postmeta' )
-            ->select( 'meta_value', 'meta_key' )
-            ->where( 'post_id', '=', $page_id )
-            ->orderBy( 'meta_id', 'ASC' )
+        $rows = DB::table('dj_postmeta')
+            ->select('meta_value', 'meta_key')
+            ->where('post_id', '=', $page_id)
+            ->orderBy('meta_id', 'ASC')
             ->get();
 
-        return !empty( $rows[0]->meta_value ) ? $rows : [];
+        return !empty($rows[0]->meta_value) ? $rows : [];
     }
 }
