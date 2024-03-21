@@ -16,7 +16,8 @@ class NavigationService
                 $url    = explode("/#", str_replace("http://", "", $menu_item->url));
                 $url[1] = (count($url) < 2) ? '' : '#' . $url[1];
             } else {
-                $url[0] = $menu_item->url;
+                //if external link start with "//"" then remove it (used for mobile app openings)
+                $url[0] = substr($menu_item->url, 0, 2) === "//" ? substr($menu_item->url, 2) : $menu_item->url;
                 $url[1] = '';
             }
 
