@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Bio;
+namespace App\Http\Controllers\Standalone;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 
-use App\Services\BioService;
+use App\Services\LinkTreeService;
 use App\Services\ErrorService;
 use Carbon\Carbon;
 use Cache;
 
-class BioController extends Controller
+class LinkTreeController extends Controller
 {
     public function __construct()
     {
-        // id:7 - bio API content
+        // id:1347 - linktree API content
     }
 
     public function getPage( $page ): object
@@ -23,17 +23,20 @@ class BioController extends Controller
             return ErrorService::verboseError( $page, 'page_not_found' );
         }
 
+        //return response( LinkTreeService::shapeResponse( $metadata ) );
+        
         return Cache::remember(
-            BIO_CACHE_KEY,
+            LINK_TREE_CACHE_KEY,
             Carbon::now()->addDays( 30 ),
             function () use ( $page ) {
                 $metadata = Post::getPostMeta( $page );
                 
                 return ( !empty( $metadata ) )
-                    ? response( BioService::shapeResponse( $metadata ) )
+                    ? response( LinkTreeService::shapeResponse( $metadata ) )
                     : ErrorService::verboseError( $page, 'empty_metadata', 402 );
             }
         );
+        
     }
 }
 

@@ -35,13 +35,13 @@ class MoreController extends Controller
             return ErrorService::verboseError( $page_id, 'page_not_found' );
         }
 
-        $metadata = Post::getPostMeta( $page_id );
         $this->more_cache_key = MoreService::buildCacheKey( $section, $more );
 
         return Cache::remember(
             $this->more_cache_key,
             Carbon::now()->addDays(30),
-            function () use ( $more, $metadata, $section ) {
+            function () use ( $more, $section ) {
+                $metadata = Post::getPostMeta( $page_id );
 
                 return ( ! empty( $metadata ) )
                     ? response( MoreService::shapeResponse( $metadata, $more, $section ) )

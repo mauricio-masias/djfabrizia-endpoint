@@ -23,12 +23,11 @@ class VideoController extends Controller
             return ErrorService::verboseError( $page, 'page_not_found' );
         }
 
-        $metadata = Post::getPostMeta( $page );
-
         return Cache::remember(
             VIDEOS_CACHE_KEY,
             Carbon::now()->addDays(30),
-            function () use ( $page, $metadata ) {
+            function () use ( $page ) {
+                $metadata = Post::getPostMeta( $page );
 
                 return ( ! empty( $metadata ) )
                     ? response( VideoService::shapeResponse( $metadata ) )

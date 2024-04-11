@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Nav;
 use App\Http\Controllers\Controller;
 use App\Models\Navigation;
 use App\Services\NavigationService;
-use App\Services\ErrorService;
-use Carbon\Carbon;
 use Cache;
+use Carbon\Carbon;
 
 class NavController extends Controller
 {
 
-    private $cache_key = '';
+    private $cacheKey = '';
 
     public function __construct()
     {
@@ -21,32 +20,41 @@ class NavController extends Controller
         //id:2 - Main menu - slug: main-menu
     }
 
-    public function getNavById( $option )
+    public function getNavById($option): array
     {
-        if( (int) $option <= 0 ) {
-            return ErrorService::verboseError( $option, 'wrong_slug_format' );
+        if ((int) $option <= 0) {
+            return ['error' => 'wrong nav ID'];
         }
 
         //Cache::forget(self::CACHE_KEY);
-        switch( $option ){
-            case 2: $this->cache_key = MAIN_MENU_CACHE_KEY;   break;
-            case 3: $this->cache_key = FOOTER_MENU_CACHE_KEY; break;
-            case 4: $this->cache_key = MOBILE_MENU_CACHE_KEY; break;
-            default: return ErrorService::verboseError( $option, 'not_found' ); break;
+        switch ($option) {
+            case 2:
+                $this->cacheKey = MAIN_MENU_CACHE_KEY;
+                break;
+            case 3:
+                $this->cacheKey = FOOTER_MENU_CACHE_KEY;
+                break;
+            case 4:
+                $this->cacheKey = MOBILE_MENU_CACHE_KEY;
+                break;
+            default:
+                return ['error' => 'no cache key found'];
         }
 
+        //$defaultRows = Navigation::getMenu($option);
+        //return NavigationService::setCustomValues($defaultRows);
+        
         return Cache::remember(
-            $this->cache_key,
+            $this->cacheKey,
             Carbon::now()->addDays(30),
-            function () use ( $option ) {
+            function () use ($option) {
+                $defaultRows = Navigation::getMenu($option);
 
-                $default_rows = Navigation::getMenu( $option );
-
-                return (! empty( $default_rows ) )
-                    ? response( NavigationService::setCustomValues( $default_rows ) )
-                    : ErrorService::verboseError( $option, 'empty_result', 402 );
+                return (!empty($defaultRows))
+                    ? NavigationService::setCustomValues($defaultRows)
+                    : ['error'=>'no rows found'];
             }
         );
+        
     }
 }
-

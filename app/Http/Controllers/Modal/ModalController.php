@@ -29,12 +29,11 @@ class ModalController extends Controller
             return ErrorService::verboseError( $option, 'slug_not_recognized' );
         }
 
-        $metadata = Post::getPostMeta( $this->page_id );
-
         return Cache::remember(
             MODAL_CACHE_KEY,
             Carbon::now()->addDays(30),
-            function () use ( $metadata, $option ) {
+            function () use ( $option ) {
+                $metadata = Post::getPostMeta( $this->page_id );
 
                 return ( ! empty( $metadata ) )
                     ? response( ModalService::shapeResponse( $metadata, $option ) )

@@ -45,12 +45,12 @@ class ContactController extends Controller
             return ErrorService::verboseError( $page, 'not_found' );
         }
 
-        $metadata = Post::getPostMeta( $page );
-
         return Cache::remember(
             CONTACT_CACHE_KEY,
             Carbon::now()->addDays( 30 ),
-            function () use ( $page, $metadata ) {
+            function () use ( $page ) {
+                $metadata = Post::getPostMeta( $page );
+                
                 return ( !empty( $metadata ) )
                     ? response( [ ContactService::showForm( $metadata ) ] )
                     : ErrorService::verboseError( $page, 'empty_metadata', 402 );

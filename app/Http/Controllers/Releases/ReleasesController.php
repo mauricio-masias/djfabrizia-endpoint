@@ -22,13 +22,12 @@ class ReleasesController extends Controller
             return ErrorService::verboseError( $page, 'page_not_found' );
         }
 
-        $metadata = Post::getPostMeta( $page );
-
         return Cache::remember(
             RELEASES_CACHE_KEY,
             Carbon::now()->addDays(30),
-            function () use ( $page, $metadata ) {
-
+            function () use ( $page ) {
+                $metadata = Post::getPostMeta( $page );
+                
                 return ( ! empty( $metadata ) )
                     ? response( ReleasesService::shapeResponse( $metadata ) )
                     : ErrorService::verboseError( $page, 'empty_metadata', 402 );

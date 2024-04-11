@@ -22,12 +22,11 @@ class HomepageController extends Controller
             return ErrorService::verboseError( $page, 'not_found' );
         }
 
-        $metadata = Post::getPostMeta( $page );
-
         return Cache::remember(
             HOMEPAGE_CACHE_KEY,
             Carbon::now()->addDays(30),
-            function () use ( $page, $metadata ) {
+            function () use ( $page ) {
+                $metadata = Post::getPostMeta( $page );
 
                 return ( ! empty( $metadata ) )
                     ? response( HomeService::shapeResponse( $metadata ) )

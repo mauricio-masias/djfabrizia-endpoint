@@ -29,12 +29,12 @@ class GalleryController extends Controller
             return ErrorService::verboseError( $this->page_id, 'page_not_found' );
         }
 
-        $metadata = Post::getPostMeta( $this->page_id );
-
         return Cache::remember(
             $this->cache_key,
             Carbon::now()->addDays( 30 ),
-            function () use ( $metadata, $source ) {
+            function () use ( $source ) {
+                $metadata = Post::getPostMeta( $this->page_id );
+
                 return ( !empty( $metadata ) )
                     ? response( GalleryService::shapeResponse( $metadata, $source ) )
                     : ErrorService::verboseError( $this->page_id, 'empty_metadata', 402 );
