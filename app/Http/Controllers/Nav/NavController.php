@@ -20,7 +20,7 @@ class NavController extends Controller
         //id:2 - Main menu - slug: main-menu
     }
 
-    public function getNavById($option): array
+    public function getNavById($option): object|array
     {
         if ((int) $option <= 0) {
             return ['error' => 'wrong nav ID'];
@@ -52,7 +52,7 @@ class NavController extends Controller
 
                 return (!empty($defaultRows))
                     ? NavigationService::setCustomValues($defaultRows)
-                    : ['error'=>'no rows found'];
+                    : ErrorService::verboseError( $page, 'empty_metadata', 402 );
             }
         );
         
