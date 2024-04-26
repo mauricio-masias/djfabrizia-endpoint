@@ -37,7 +37,7 @@ class SocialService
         ];
     }
 
-    private static function socialIcons($settings): array
+    public static function socialIcons($settings): array
     {
         $icons    = [];
         $filtered = [];
@@ -50,10 +50,13 @@ class SocialService
 
         for ($x = 0; $x < (int) $settings['social_icons']; $x++) {
             $filtered[] = [
-                'name'  => $icons['social_icons_' . $x . '_icon_network'],
-                'class' => $icons['social_icons_' . $x . '_icon_class'],
-                'url'   => $icons['social_icons_' . $x . '_icon_link'],
-                'type'  => $icons['social_icons_' . $x . '_icon_type'],
+                'name'    => $icons['social_icons_' . $x . '_icon_network'],
+                'class'   => $icons['social_icons_' . $x . '_icon_class'],
+                'url'     => $icons['social_icons_' . $x . '_icon_link'],
+                'type'    => $icons['social_icons_' . $x . '_icon_type'],
+                'app_url' => array_key_exists('social_icons_' . $x . '_icon_app_link', $icons) 
+                    ? $icons['social_icons_' . $x . '_icon_app_link']
+                    : null,
             ];
         }
 
