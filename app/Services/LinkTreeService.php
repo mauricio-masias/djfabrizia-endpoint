@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Helpers\FilterPostMeta as FilterHelper;
-use App\Helpers\LinkTreeAppandWebUrls as UrlHelper;
+use App\Helpers\LinkTreeAppAndWebUrls as UrlHelper;
 use App\Helpers\LinkTreeImage as ImageHelper;
 use App\Services\SocialService as Social;
 
