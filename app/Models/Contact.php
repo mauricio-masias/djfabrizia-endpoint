@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
@@ -19,12 +19,12 @@ class Contact extends Model
 
     protected $hidden = [];
 
-    public static function getCf7FormStructure($id)
+    static public function getCf7FormStructure( $id )
     {
-        $data = DB::table('dj_postmeta')
-            ->select('meta_value')
-            ->where('post_id', '=', $id)
-            ->where('meta_key', '=', '_mail')
+        $data = DB::table( 'dj_postmeta' )
+            ->select( 'meta_value' )
+            ->where( 'post_id', '=', $id )
+            ->where( 'meta_key', '=', '_mail' )
             ->get();
 
         return $data[0]->meta_value;

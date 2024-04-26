@@ -18,10 +18,10 @@ class Gallery extends Model
 
     public static function getMobileFeed()
     {
-        return DB::table('dj_instagram_posts')
-            ->select('like_count', 'comments_count', 'permalink', 'caption', 'username')
-            ->orderBy('post_date', 'asc')
-            ->get();
+         return DB::table( 'dj_instagram_posts' )
+             ->select( 'like_count', 'comments_count', 'permalink', 'caption', 'username' )
+             ->orderBy('post_date', 'asc')
+             ->get();
     }
 
 }

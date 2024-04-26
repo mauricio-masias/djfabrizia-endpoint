@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Playlists extends Model
 {
@@ -20,12 +20,12 @@ class Playlists extends Model
 
     protected $hidden = [];
 
-    public static function getRange($limit, $page)
+    public static function getRange( $limit, $page )
     {
-        $offset = $limit * ($page - 1);
+        $offset = $limit * ( $page - 1 );
 
-        $rows = DB::select(
-            "    SELECT
+        $rows = DB::select("
+                SELECT
                     a.post_title as title,
                     (select c.meta_value from dj_postmeta c where post_id=a.ID and meta_key='playlist_short_name') as short_name,
                     (select c.meta_value from dj_postmeta c where post_id=a.ID and meta_key='playlist_url') as url,
@@ -38,16 +38,16 @@ class Playlists extends Model
                 ORDER BY a.post_date DESC
                 LIMIT :limit OFFSET :offset"
             ,
-            ['option' => 'Playlists', 'offset' => $offset, 'limit' => $limit]
+            [ 'option' => 'Playlists', 'offset' => $offset, 'limit' => $limit ]
         );
 
-        return !empty($rows[0]->title) ? $rows : [];
+        return !empty( $rows[0]->title ) ? $rows : [];
     }
 
     public static function countAll()
     {
-        return DB::table('dj_posts')
-            ->where('post_type', '=', 'Playlists')
+        return DB::table( 'dj_posts' )
+            ->where( 'post_type', '=', 'Playlists' )
             ->count();
     }
 }

@@ -22,8 +22,7 @@ class Navigation extends Model
 
     public static function getMenu($option)
     {
-        return DB::select(
-            "
+        return DB::select("
                 SELECT
                     a.ID,
                     a.post_title as title,
@@ -35,7 +34,8 @@ class Navigation extends Model
                 JOIN dj_term_relationships b ON a.ID=b.object_id
                 WHERE b.term_taxonomy_id = :option
                 ORDER BY a.menu_order ASC"
-            , ['option' => $option]
+            , 
+            ['option' => $option]
         );
     }
 }

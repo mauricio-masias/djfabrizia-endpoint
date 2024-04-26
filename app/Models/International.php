@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class International extends Model
 {
@@ -20,11 +20,11 @@ class International extends Model
 
     protected $hidden = [];
 
-    public static function getCountries($limit, $page)
+    public static function getCountries( $limit, $page )
     {
-        $offset = $limit * ($page - 1);
+        $offset = $limit * ( $page - 1 );
 
-        $rows = DB::select(
+        $rows = DB::select( DB::raw(
             "SELECT
                 a.ID,
                 a.post_title as title,
@@ -35,27 +35,26 @@ class International extends Model
             AND b.meta_key  = 'default_country'
             ORDER BY a.post_title ASC
             LIMIT :limit OFFSET :offset"
-            ,
-            ['option' => 'International', 'offset' => $offset, 'limit' => $limit]
+        ),
+            [ 'option' => 'International', 'offset' => $offset, 'limit' => $limit ]
         );
 
-        return !empty($rows[0]->ID) ? $rows : [];
+        return !empty( $rows[0]->ID ) ? $rows : [];
     }
 
-    public static function getCities($id) //180
-
+    public static function getCities( $id ) //180
     {
         $return = [];
 
-        $rows = DB::table('dj_postmeta')
-            ->select('meta_key', 'meta_value')
-            ->where('post_id', '=', $id)
-            ->where('meta_key', 'LIKE', 'country_city%')
+        $rows = DB::table( 'dj_postmeta' )
+            ->select( 'meta_key', 'meta_value' )
+            ->where( 'post_id', '=', $id )
+            ->where( 'meta_key', 'LIKE', 'country_city%' )
             ->get();
 
-        foreach ($rows as $city) {
+        foreach ( $rows as $city ) {
             $return[$city->meta_key] = $city->meta_value;
         }
-        return !empty($return) ? $return : [];
+        return !empty( $return ) ? $return : [];
     }
 }

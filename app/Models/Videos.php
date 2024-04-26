@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Videos extends Model
 {
@@ -22,8 +22,8 @@ class Videos extends Model
 
     public static function getAll()
     {
-        $rows = DB::select(
-            "    SELECT
+        $rows = DB::select("
+                SELECT
                     a.post_title as title,
                     (select c.meta_value from dj_postmeta c where post_id=a.ID and meta_key='video_id') as id,
                     (select c.meta_value from dj_postmeta c where post_id=a.ID and meta_key='video_title') as title,
@@ -32,10 +32,10 @@ class Videos extends Model
                  WHERE a.post_type = :option
                  ORDER BY a.post_date DESC"
             ,
-            ['option' => 'Videos']
+            [ 'option' => 'Videos' ]
         );
 
-        return !empty($rows[0]->title) ? $rows : [];
+        return !empty( $rows[0]->title ) ? $rows : [];
     }
 
 }
