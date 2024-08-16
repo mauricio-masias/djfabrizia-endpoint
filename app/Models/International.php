@@ -24,7 +24,7 @@ class International extends Model
     {
         $offset = $limit * ( $page - 1 );
 
-        $rows = DB::select( DB::raw(
+        $rows = DB::select(
             "SELECT
                 a.ID,
                 a.post_title as title,
@@ -35,7 +35,7 @@ class International extends Model
             AND b.meta_key  = 'default_country'
             ORDER BY a.post_title ASC
             LIMIT :limit OFFSET :offset"
-        ),
+        ,
             [ 'option' => 'International', 'offset' => $offset, 'limit' => $limit ]
         );
 
