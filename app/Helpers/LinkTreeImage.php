@@ -11,7 +11,7 @@ class LinkTreeImage
 		'facebook'  => 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Facebook_F_icon.svg/512px-Facebook_F_icon.svg.png',
 		'x'  => 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/X_icon.svg/800px-X_icon.svg.png?20230813175046',
 		'youtube' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg/1024px-YouTube_play_button_icon_%282013%E2%80%932017%29.svg.png',
-		'mixcloud' => 'https://pbs.twimg.com/profile_images/1626300650731470849/fmsVD4rY_400x400.jpg',
+		'mixcloud' => 'https://thumbnailer.mixcloud.com/unsafe/136x136/profile/4/3/1/3/4b78-ad9f-4e11-9f67-932560b17428',
 		'spotify' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/512px-Spotify_icon.svg.png'
 	];
 
