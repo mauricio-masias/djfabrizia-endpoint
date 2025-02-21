@@ -40,7 +40,7 @@ class MoreController extends Controller
         return Cache::remember(
             $this->more_cache_key,
             Carbon::now()->addDays(30),
-            function () use ( $more, $section ) {
+            function () use ( $more, $section, $page_id ) {
                 $metadata = Post::getPostMeta( $page_id );
 
                 return ( ! empty( $metadata ) )
