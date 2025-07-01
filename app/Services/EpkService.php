@@ -44,7 +44,9 @@ class EpkService
     {
         return [
             'reel_url'             => $sAbout['about_reel_url'],
-            'reel_image'           => $sAbout['about_reel_image'],
+            'reel_image'           => Looper::getImageUrl($sAbout['about_reel_image']),
+            'reel_cta'             => $sAbout['about_reel_cta'],
+            'reel_title'           => $sAbout['about_reel_title'],
             'intro_a'              => $sAbout['about_intro_a'],
             'intro_b'              => $sAbout['about_intro_b'],
             'carousel'             => Looper::getCarouselUrls($sAbout['about_carousel']),
