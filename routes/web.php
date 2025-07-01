@@ -31,6 +31,7 @@ $router->group( [ 'prefix' => 'api/v1/' ], function () use ( $router ) {
     $router->get( 'releases/{page}', 'Releases\ReleasesController@getPage' );
     $router->get( 'social/{page}', 'Social\SocialController@getPage' );
     $router->get( 'video/{page}', 'Videos\VideoController@getPage' );
+    $router->get( 'epk/{page}', 'Epk\EpkController@getPage' );
 } );
 
 $router->group( [ 'middleware' => 'auth' ], function () use ( $router ) {
