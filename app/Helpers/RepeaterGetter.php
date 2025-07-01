@@ -64,7 +64,7 @@ class RepeaterGetter
                 
                 if ($itemLabel[$y-1] === 'mix') {   
                     $bits['url'] = Post::getPostMeta($value)[0]->meta_value;
-                    $bits['img'] = Post::getPostMeta($value)[2]->meta_value;
+                    $bits['img'] = Post::getPostMeta($value)[1]->meta_value;
                 } else {
                     $bits['label'] = $value;
                 }
