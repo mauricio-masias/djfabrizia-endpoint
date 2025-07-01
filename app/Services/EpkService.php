@@ -19,7 +19,7 @@ class EpkService
             'intro'      => self::introContent($sIntro),
             'about'      => self::aboutContent($sAbout),
             'whatOffers' => self::offersContent($sWhatOffers),
-            'videos'      => self::videosContent($sVideos),
+            'videos'     => self::videosContent($sVideos),
             'mixes'      => self::mixesContent($sMixes),
             'status'     => true,
         ];
@@ -28,14 +28,15 @@ class EpkService
     private static function introContent($sIntro): array
     {
         return [
-            'insta_stats'    => $sIntro['intro_insta_stats'],
-            'email_label'    => $sIntro['intro_email_label'],
-            'email_text'     => $sIntro['intro_email_text'],
-            'whatsapp_label' => $sIntro['intro_whatsapp_label'],
-            'whatsapp_text'  => $sIntro['intro_whatsapp_text'],
-            'socials_label'  => $sIntro['intro_socials_label'],
-            'socials_text'   => $sIntro['intro_socials_text'],
-            'website_label'  => $sIntro['intro_website_label']
+            'insta_stats_img' => Looper::getImageUrl($sIntro['intro_insta_stats']),
+            'insta_stats_alt' => $sIntro['intro_insta_stats_alt'],
+            'email_label'     => $sIntro['intro_email_label'],
+            'email_text'      => $sIntro['intro_email_text'],
+            'whatsapp_label'  => $sIntro['intro_whatsapp_label'],
+            'whatsapp_text'   => $sIntro['intro_whatsapp_text'],
+            'socials_label'   => $sIntro['intro_socials_label'],
+            'socials_text'    => $sIntro['intro_socials_text'],
+            'website_label'   => $sIntro['intro_website_label']
         ];
     }
 

@@ -74,4 +74,9 @@ class RepeaterGetter
         }
         return $content;
     }
+
+    public static function getImageUrl($imageId): string
+    {
+        return Post::getPostMeta($imageId)[0]->meta_value;
+    }
 }
