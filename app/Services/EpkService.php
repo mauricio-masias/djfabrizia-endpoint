@@ -88,6 +88,7 @@ class EpkService
             'offer5_text_b' => $sWhatOffers['whatOffers_offer5_text_b'],
             'offer6'        => $sWhatOffers['whatOffers_offer6'],
             'offer6_text'   => $sWhatOffers['whatOffers_offer6_text'],
+            'setup_img'     => Looper::getImageUrl($sWhatOffers['whatOffers_setup_image']),
             'setup_cta'     => $sWhatOffers['whatOffers_setup_cta'],
             'setup_url'     => $sWhatOffers['whatOffers_setup_url'],
             'setup_alt'     => $sWhatOffers['whatOffers_setup_alt'],
@@ -100,9 +101,9 @@ class EpkService
     private static function videosContent($sVideos): array
     {
         return [
-            'insta_stats'      => $sVideos['videos_corporate_title'],
-            'email_label'      => $sVideos['videos_underground_title'],
-            'videos_corporate' => Looper::getVideoRepeater(
+            'corporate_title'   => $sVideos['videos_corporate_title'],
+            'underground_title' => $sVideos['videos_underground_title'],
+            'videos_corporate'  => Looper::getVideoRepeater(
                                     $sVideos,
                                     'videos_corporate',
                                     ['label', 'alt_text', 'url', 'image']
