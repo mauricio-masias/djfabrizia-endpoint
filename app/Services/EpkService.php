@@ -35,7 +35,8 @@ class EpkService
             'whatsapp_label'  => $sIntro['intro_whatsapp_label'],
             'whatsapp_text'   => $sIntro['intro_whatsapp_text'],
             'socials_label'   => $sIntro['intro_socials_label'],
-            'socials_text'    => $sIntro['intro_socials_text'],
+            'socials_url'     => $sIntro['intro_socials_text'],
+            'socials_text'    => str_replace("https://", "", $sIntro['intro_socials_text']),
             'website_label'   => $sIntro['intro_website_label']
         ];
     }
@@ -108,7 +109,7 @@ class EpkService
                                     'videos_corporate',
                                     ['label', 'alt_text', 'url', 'image']
                                   ),
-            'videos_undergound' => Looper::getVideoRepeater(
+            'videos_underground' => Looper::getVideoRepeater(
                                     $sVideos,
                                     'videos_undergound',
                                     ['label', 'alt_text', 'url', 'image']
